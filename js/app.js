@@ -4,7 +4,7 @@
 
 /*---------------------------- Variables (state) ----------------------------*/
 let arrSquares = []
-let yourTurn, winner, aTie
+let player1, player2, winner, aTie
 
 
 
@@ -20,6 +20,7 @@ const row32 = document.querySelector('#sq7')
 const row33 = document.querySelector('#sq8')
 const gameMsg = document.querySelector('#message')
 
+console.log(row33)
 /*----------------------------- Event Listeners -----------------------------*/
 
 
@@ -28,14 +29,15 @@ const gameMsg = document.querySelector('#message')
 
 init()
 function init() {
-  row11.map() = ""
-  row12.map() = ""
-  row13.map() = ""
-  row21.map() = ""
-  row22.map() = ""
-  row23.map() = ""
-  row31.map() = ""
-  row32.map() = ""
-  row33.map() = ""
+  //initializing the board array, how to set the indexes?
+arrSquares = [null, null, null, null, null, null, null, null, null]
+//initailizing variables
+  let player1 = 1
+  let player2 = -1
+  let winner = null
+  let aTie = 'T'
+}
 
+function render() {
+arrSquares.forEach
 }
