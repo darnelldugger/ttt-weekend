@@ -4,7 +4,7 @@
 
 /*---------------------------- Variables (state) ----------------------------*/
 let arrSquares = []
-let player1, player2, winner, aTie
+let O, X, winner, aTie
 
 
 
@@ -18,6 +18,7 @@ const row23 = document.querySelector('#sq5')
 const row31 = document.querySelector('#sq6')
 const row32 = document.querySelector('#sq7')
 const row33 = document.querySelector('#sq8')
+const squares = document.querySelectorAll('.squares')
 const gameMsg = document.querySelector('#message')
 
 console.log(row33)
@@ -32,12 +33,30 @@ function init() {
   //initializing the board array, how to set the indexes?
 arrSquares = [null, null, null, null, null, null, null, null, null]
 //initailizing variables
-  let player1 = 1
-  let player2 = -1
+  let X = 1
+  let O = -1
   let winner = null
   let aTie = 'T'
 }
 
 function render() {
-arrSquares.forEach
+for (let i = 0; i < arrSquares.length; i++){
+  if (arrSquares[i] === 1){
+    squares[i].innerText = "X"
+  } 
+  if(arrSquares[i] === -1){
+    squares[i].innerText = "O"
+  }
 }
+}
+
+function render() {
+  if (!winner){
+    "X, it is your turn"
+  } else if (winner === "T"){
+    "It's a tie game!"
+  } else {
+    "Congrats! You have won the game!"
+  }
+}
+console.log(arrSquares)
