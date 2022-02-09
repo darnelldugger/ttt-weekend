@@ -9,27 +9,17 @@ const winningCombos = [
   [2, 5, 8],
   [0, 4, 8],
   [2, 4, 6]
-
+];
 /*---------------------------- Variables (state) ----------------------------*/
-let arrSquares = []
-let O, X, winner, aTie
+let board, turn, winner
 
 
 
 /*------------------------ Cached Element References ------------------------*/
-const row11 = document.querySelector('#sq0')
-const row12 = document.querySelector('#sq1')
-const row13 = document.querySelector('#sq2')
-const row21 = document.querySelector('#sq3')
-const row22 = document.querySelector('#sq4')
-const row23 = document.querySelector('#sq5')
-const row31 = document.querySelector('#sq6')
-const row32 = document.querySelector('#sq7')
-const row33 = document.querySelector('#sq8')
-const squares = document.querySelectorAll('.squares')
+
+const squares = document.querySelectorAll('section > div')
 const gameMsg = document.querySelector('#message')
 
-console.log(row33)
 /*----------------------------- Event Listeners -----------------------------*/
 
 
@@ -39,32 +29,40 @@ console.log(row33)
 init()
 function init() {
   //initializing the board array, how to set the indexes?
-arrSquares = [null, null, null, null, null, null, null, null, null]
-//initailizing variables
-  let X = 1
-  let O = -1
-  let winner = null
-  let aTie = 'T'
+  board = [null, null, null, null, null, null, null, null, null]
+  //initailizing variables
+  
+  turn = 1
+  winner = null
+  render()
 }
 
 function render() {
-for (let i = 0; i < arrSquares.length; i++){
-  if (arrSquares[i] === 1){
-    squares[i].innerText = "X"
-  } 
-  if(arrSquares[i] === -1){
-    squares[i].innerText = "O"
+ board.forEach((cell, idx) => {
+  let cellColor
+  let cellLetter
+  if (cell === 1) {
+    cellColor = "green"
+    cellLetter = 'X'
+  } else if (cell === -1) {
+    cellColor = "purple"
+    cellLetter = 'O'
+  } else if (cell === null) {
+    cellColor = "white"
+    cellLetter = ""
   }
-}
+  squares[idx].style.background = cellColor
+});
+  squares[idx].innerText = cellLetter
 }
 
-function render() {
+
+
   if (!winner){
-    "X, it is your turn"
+    message.innerText = `It is ${turn === 1 ? "X" : "O"}'s turn!`
   } else if (winner === "T"){
-    "It's a tie game!"
+    message.innerText = `Cat's game. 🐱 MEOW!!!!`
   } else {
-    "Congrats! You have won the game!"
+    message.innerText = `Congratulations ${winner === 1 ? "X" : "O"}!!!!!`
   }
-}
-console.log(arrSquares)
+
