@@ -19,10 +19,12 @@ let board, turn, winner
 
 const squares = document.querySelectorAll('section > div')
 const gameMsg = document.querySelector('#message')
-
+const resetBtn = document.getElementById('reset')
 /*----------------------------- Event Listeners -----------------------------*/
-
-
+squares.forEach((square) => {
+  square.addEventListener('click', handleClick)
+})
+resetBtn.addEventListener('click', init)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -52,7 +54,7 @@ function render() {
     cellLetter = ""
   }
   squares[idx].style.background = cellColor
-});
+})
   squares[idx].innerText = cellLetter
 }
 
@@ -66,3 +68,40 @@ function render() {
     message.innerText = `Congratulations ${winner === 1 ? "X" : "O"}!!!!!`
   }
 
+  function handleClick(evt){
+
+    let sqIdx = parseInt(evt.target.id.replace('sq', ''))
+    if (board[sqIdx] || winner) {
+      return
+    }
+    board[sqIdx] = turn
+    turn *= -1
+    winner = getWinner()
+    render()
+  }
+
+
+function getWinner() {
+  if (Math.abs(board[0] + board[1] + board[2]) === 3) return board[0];
+  if (Math.abs(board[3] + board[4] + board[5]) === 3) return board[3];
+  if (Math.abs(board[6] + board[7] + board[8]) === 3) return board[6];
+  if (Math.abs(board[0] + board[3] + board[6]) === 3) return board[0];
+  if (Math.abs(board[1] + board[4] + board[7]) === 3) return board[1];
+  if (Math.abs(board[2] + board[5] + board[8]) === 3) return board[2];
+  if (Math.abs(board[0] + board[4] + board[8]) === 3) return board[0];
+  if (Math.abs(board[2] + board[4] + board[6]) === 3) return board[2];
+  if (Math.abs(board[0] + board[1] + board[2]) === 3) return board[0]
+  if (Math.abs(board[3] + board[4] + board[5]) === 3) return board[3]
+  if (Math.abs(board[6] + board[7] + board[8]) === 3) return board[6]
+  if (Math.abs(board[0] + board[3] + board[6]) === 3) return board[0]
+  if (Math.abs(board[1] + board[4] + board[7]) === 3) return board[1]
+  if (Math.abs(board[2] + board[5] + board[8]) === 3) return board[2]
+  if (Math.abs(board[0] + board[4] + board[8]) === 3) return board[0]
+  if (Math.abs(board[2] + board[4] + board[6]) === 3) return board[2]
+
+  if (board.includes(null)) {
+    return null
+  } else {
+    return "T"
+  }
+}
